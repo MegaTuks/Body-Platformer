@@ -1,0 +1,40 @@
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\bin\Debug\TestJoint.exe.config
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\obj\Debug\TestJoint.csprojResolveAssemblyReference.cache
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\obj\Debug\MainWindow.baml
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\obj\Debug\MainWindow.g.cs
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\obj\Debug\App.g.cs
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\obj\Debug\TestJoint_MarkupCompile.cache
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\obj\Debug\TestJoint.g.resources
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\obj\Debug\TestJoint.Properties.Resources.resources
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\obj\Debug\TestJoint.csproj.GenerateResource.Cache
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\bin\Debug\TestJoint.exe
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\bin\Debug\TestJoint.pdb
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\bin\Debug\Microsoft.Kinect.dll
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\bin\Debug\Microsoft.Kinect.Toolkit.BackgroundRemoval.dll
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\bin\Debug\Microsoft.Kinect.Toolkit.Controls.dll
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\bin\Debug\Microsoft.Kinect.Toolkit.dll
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\bin\Debug\Microsoft.Kinect.Toolkit.Fusion.dll
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\bin\Debug\Microsoft.Kinect.Toolkit.Interaction.dll
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\bin\Debug\Microsoft.Kinect.xml
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\obj\Debug\TestJoint.exe
+c:\users\manuel\documents\visual studio 2015\Projects\TestJoint\TestJoint\obj\Debug\TestJoint.pdb
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\bin\Debug\TestJoint.exe.config
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\obj\Debug\TestJoint.exe
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\obj\Debug\TestJoint.pdb
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\bin\Debug\TestJoint.exe
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\bin\Debug\TestJoint.pdb
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\bin\Debug\Microsoft.Kinect.dll
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\bin\Debug\Microsoft.Kinect.Toolkit.BackgroundRemoval.dll
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\bin\Debug\Microsoft.Kinect.Toolkit.Controls.dll
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\bin\Debug\Microsoft.Kinect.Toolkit.dll
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\bin\Debug\Microsoft.Kinect.Toolkit.Fusion.dll
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\bin\Debug\Microsoft.Kinect.Toolkit.Interaction.dll
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\bin\Debug\Microsoft.Kinect.xml
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\obj\Debug\TestJoint.csprojResolveAssemblyReference.cache
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\obj\Debug\MainWindow.baml
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\obj\Debug\MainWindow.g.cs
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\obj\Debug\App.g.cs
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\obj\Debug\TestJoint_MarkupCompile.cache
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\obj\Debug\TestJoint.g.resources
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\obj\Debug\TestJoint.Properties.Resources.resources
+C:\Users\Tuks\Downloads\TestJoint\TestJoint\TestJoint\obj\Debug\TestJoint.csproj.GenerateResource.Cache
