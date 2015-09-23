@@ -125,6 +125,21 @@
   <ItemGroup>
     <Resource Include="platforms.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="snowBackground.png" />
+    <Resource Include="snowHazard.png" />
+    <Resource Include="snowPlatform.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="obstacle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DoorPlatform.png" />
+    <Resource Include="headObject.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="snowFloor.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
