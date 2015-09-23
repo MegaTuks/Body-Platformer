@@ -68,6 +68,10 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=1.4.13.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.1.4.13\lib\net\WpfAnimatedGif.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -82,6 +86,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Class1.cs" />
     <Compile Include="ColorMap.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -106,7 +111,9 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -117,28 +124,31 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="vivillon.png" />
+    <Resource Include="Images\vivillon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="backGround.png" />
+    <Resource Include="Images\backGround.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="platforms.png" />
+    <Resource Include="Images\platforms.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="snowBackground.png" />
-    <Resource Include="snowHazard.png" />
-    <Resource Include="snowPlatform.png" />
+    <Resource Include="Images\snowBackground.png" />
+    <Resource Include="Images\snowHazard.png" />
+    <Resource Include="Images\snowPlatform.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="obstacle.png" />
+    <Resource Include="Images\obstacle.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="DoorPlatform.png" />
-    <Resource Include="headObject.png" />
+    <Resource Include="Images\DoorPlatform.png" />
+    <Resource Include="Images\headObject.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="snowFloor.png" />
+    <Resource Include="Images\snowFloor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\megaman running.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

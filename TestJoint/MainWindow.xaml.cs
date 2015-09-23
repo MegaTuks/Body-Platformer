@@ -31,6 +31,8 @@ namespace TestJoint
             InitializeComponent();
         }
 
+ 
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _sensor = KinectSensor.KinectSensors.Where(s => s.Status == KinectStatus.Connected).FirstOrDefault();
