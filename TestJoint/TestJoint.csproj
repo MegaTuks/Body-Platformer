@@ -56,6 +56,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -151,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Megaman_Rockman_X_Intro_Highway_Stage.wav" />
+    <Resource Include="Images\runningLeft.gif" />
     <Content Include="Sounds\Megaman %28Rockman%29 X Intro Highway Stage.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

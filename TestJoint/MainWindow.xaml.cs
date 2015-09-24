@@ -14,6 +14,11 @@ using System.Windows.Shapes;
 using Microsoft.Kinect;
 using System.Windows.Threading;
 using System.Media;
+using System.Windows.Media.Animation;
+using System.Drawing;
+
+
+
 
 
 namespace TestJoint
@@ -31,6 +36,10 @@ namespace TestJoint
         int CharPosY = 0;
         int DistanciaX = 1;
         SoundPlayer backgroundM;
+        bool distanceChanged = false;
+        bool spinyOrb;
+        Random rnd = new Random();
+        
 
         public MainWindow()
         {
@@ -63,16 +72,19 @@ namespace TestJoint
         }
         void timer_Tick(object sender, EventArgs e)
         {
-
-
+            var controller = WpfAnimatedGif.ImageBehavior.GetAnimationController(Avatar);
+            var leftRun = new BitmapImage();
+            leftRun.BeginInit();
+            leftRun.UriSource = new Uri(@"Images\runningLeft.gif", UriKind.Relative);
+            leftRun.EndInit();
+            var Run = new BitmapImage();
+            Run.BeginInit();
+            Run.UriSource = new Uri(@"Images\megaman running.gif",UriKind.Relative);
+            Run.EndInit();
             CharPos = int.Parse(Avatar.GetValue(Canvas.LeftProperty).ToString());
-            if (CharPos >= 560 || CharPos == -1)
-            {
-                
-                DistanciaX *= -1;
-            }
+            
 
-            //if(Personaje.po)
+            //if(Personaje.po) valores de interaccion
             int PerTop = int.Parse(Avatar.GetValue(Canvas.TopProperty).ToString());
             int PlatTop = int.Parse(leftPlatform.GetValue(Canvas.TopProperty).ToString());
             int PerLeft = int.Parse(Avatar.GetValue(Canvas.LeftProperty).ToString());
@@ -83,7 +95,29 @@ namespace TestJoint
             int leftGround1 = int.Parse(Floor1.GetValue(Canvas.LeftProperty).ToString());
             int door = int.Parse(Door.GetValue(Canvas.TopProperty).ToString());
             int leftDoor = int.Parse(Door.GetValue(Canvas.LeftProperty).ToString());
+            // valor se de Paredes
+            int wall1 = int.Parse(Wall1.GetValue(Canvas.TopProperty).ToString());
+            int wall2 = int.Parse(Wall2.GetValue(Canvas.TopProperty).ToString());
+            int wall3 = int.Parse(Wall3.GetValue(Canvas.TopProperty).ToString());
+            int leftWall1 = int.Parse(Wall1.GetValue(Canvas.LeftProperty).ToString());
+            int leftWall2 = int.Parse(Wall2.GetValue(Canvas.LeftProperty).ToString());
+            int leftWall3 = int.Parse(Wall3.GetValue(Canvas.LeftProperty).ToString());
 
+            System.Drawing.Rectangle AvatarRect = new System.Drawing.Rectangle(PerLeft,PerTop, (int)Avatar.Width , (int)Avatar.Height);
+            System.Drawing.Rectangle rWall1 = new System.Drawing.Rectangle(leftWall1, wall1, (int)Wall1.Width, (int)Wall1.ActualHeight);
+            System.Drawing.Rectangle rWall2 = new System.Drawing.Rectangle(leftWall2, wall2, (int)Wall2.Width, (int)Wall2.ActualHeight);
+            System.Drawing.Rectangle rWall3 = new System.Drawing.Rectangle(leftWall3, wall3, (int)Wall3.Width, (int)Wall3.ActualHeight);
+            xPosition.Content = "avatar x= " + PerLeft + "Area= \n" + AvatarRect;
+            yPosition.Content = "wall1 x= " + rWall1 + "Area= \n" + Wall1.ActualHeight + "intersects?\n";
+            if (AvatarRect.IntersectsWith(rWall1) || AvatarRect.IntersectsWith(rWall2) || AvatarRect.IntersectsWith(rWall3))
+            {
+
+                distanceChanged = true;
+                DistanciaX *= -1;
+                Canvas.SetLeft(Avatar, CharPos -20);
+                Canvas.SetTop(Avatar, CharPosY);
+
+            }
 
             if (PerTop < PlatTop && PerTop > PlatTop - Avatar.ActualHeight && PerLeft < PlatLeft + (int)leftPlatform.Width && PerLeft >= PlatLeft)
             {
@@ -116,16 +150,42 @@ namespace TestJoint
                 CharPosY += 1;
                 Canvas.SetTop(Avatar, CharPosY);
             }
-            xPosition.Content = PlatTop - (int)leftPlatform.ActualHeight;
-            yPosition.Content = PerTop;
+
 
             if (CharPosY > 400)
             {
-                CharPos = 10;
-                CharPosY = 0;
+               int month = rnd.Next(1, 13);
+                CharPos = 30;
+                CharPosY = -55;
                 DistanciaX = 1;
+                xPosition.Content = "Random: " + month;
+                distanceChanged = true;
                 Canvas.SetLeft(Avatar, CharPos);
                 Canvas.SetTop(Avatar, CharPosY);
+            }
+            if (distanceChanged)
+            {
+                distanceChanged = false;
+                if (DistanciaX == 1)
+                {
+                    WpfAnimatedGif.ImageBehavior.SetAnimatedSource(Avatar, Run);
+                    WpfAnimatedGif.ImageBehavior.SetRepeatBehavior(Avatar, new RepeatBehavior(0));
+                    WpfAnimatedGif.ImageBehavior.SetRepeatBehavior(Avatar, RepeatBehavior.Forever);
+                    WpfAnimatedGif.ImageBehavior.SetAutoStart(Avatar, true);
+                }
+                else
+                {
+                    WpfAnimatedGif.ImageBehavior.SetAnimatedSource(Avatar, leftRun);
+                    WpfAnimatedGif.ImageBehavior.SetRepeatBehavior(Avatar, new RepeatBehavior(0));
+                    WpfAnimatedGif.ImageBehavior.SetRepeatBehavior(Avatar, RepeatBehavior.Forever);
+                    //WpfAnimatedGif.ImageBehavior.GetAnimationController(Avatar).Play();
+                    WpfAnimatedGif.ImageBehavior.SetAutoStart(Avatar, true);
+                }
+            }
+            if (CharPos >= 560 || CharPos == -1)
+            {
+                distanceChanged = true;
+                DistanciaX *= -1;
             }
         }
         void Sensor_AllFramesReady(object sender, AllFramesReadyEventArgs e)
@@ -161,12 +221,12 @@ namespace TestJoint
                                 // 3D coordinates in meters
                                 SkeletonPoint skeletonPoint = joint.Position;
 
-                                Joint myJoint2 = body.Joints[JointType.WristLeft]; //the joint I want to compare
-                                Joint myJoint = body.Joints[JointType.WristRight]; //the joint I want to compare
+                                Joint myJoint2 = body.Joints[JointType.HandLeft]; //the joint I want to compare
+                                Joint myJoint = body.Joints[JointType.HandRight]; //the joint I want to compare
 
                                 // 2D coordinates in pixels
-                                Point point = new Point();
-                                Point point2 = new Point();
+                                System.Windows.Point point = new System.Windows.Point();
+                                System.Windows.Point point2 = new System.Windows.Point();
 
 
                                 // Skeleton-to-Color mapping
@@ -177,19 +237,7 @@ namespace TestJoint
                                 point2.X = colorPoint.X;
                                 point2.Y = colorPoint.Y;
 
-                                Rectangle rectangleRightWrist = new Rectangle
-                                {
-                                    Fill = Brushes.DarkRed,
-                                    Width = 100,
-                                    Height = 20
-                                };
 
-                                Rectangle rectangleLeftWrist = new Rectangle
-                                {
-                                    Fill = Brushes.Black,
-                                    Width = 80,
-                                    Height = 20
-                                };
                                 if (joint == myJoint)
                                 {
                                     Canvas.SetLeft(rightPlatform, point.X - 10);
@@ -202,8 +250,8 @@ namespace TestJoint
                                     Canvas.SetLeft(leftPlatform, point2.X - 30);
                                     Canvas.SetTop(leftPlatform, point2.Y - 30);
                                     // canvas.Children.Add(Shiryu);
-                                    yPosition.Content = "y: " + point2.Y;
-                                    xPosition.Content = "x: " + point2.X;
+                                   // yPosition.Content = "y: " + point2.Y;
+                                   // xPosition.Content = "x: " + point2.X;
 
                                 }
 
