@@ -86,7 +86,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Class1.cs" />
     <Compile Include="ColorMap.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -149,6 +148,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\megaman running.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Megaman_Rockman_X_Intro_Highway_Stage.wav" />
+    <Content Include="Sounds\Megaman %28Rockman%29 X Intro Highway Stage.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

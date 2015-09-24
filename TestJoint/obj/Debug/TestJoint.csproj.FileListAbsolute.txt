@@ -60,3 +60,4 @@ C:\Users\Tuks\Documents\TestJoint\TestJoint\obj\Debug\TestJoint.Properties.Resou
 C:\Users\Tuks\Documents\TestJoint\TestJoint\obj\Debug\TestJoint.csproj.GenerateResource.Cache
 C:\Users\Tuks\Documents\TestJoint\TestJoint\bin\Debug\WpfAnimatedGif.dll
 C:\Users\Tuks\Documents\TestJoint\TestJoint\bin\Debug\WpfAnimatedGif.xml
+C:\Users\Tuks\Documents\TestJoint\TestJoint\obj\Debug\TestJoint_Content.g.cs

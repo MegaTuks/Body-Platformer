@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/megaman%20running.gif")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sounds/megaman%20(rockman)%20x%20intro%20highway%20stage.mp3")]
 
 
