@@ -109,6 +109,7 @@ namespace TestJoint
             System.Drawing.Rectangle rWall3 = new System.Drawing.Rectangle(leftWall3, wall3, (int)Wall3.Width, (int)Wall3.ActualHeight);
             xPosition.Content = "avatar x= " + PerLeft + "Area= \n" + AvatarRect;
             yPosition.Content = "wall1 x= " + rWall1 + "Area= \n" + Wall1.ActualHeight + "intersects?\n";
+            Console.WriteLine(distanceChanged + " " + DistanciaX + "monito: "+ Avatar.GetValue(Canvas.LeftProperty));
             if (AvatarRect.IntersectsWith(rWall1) || AvatarRect.IntersectsWith(rWall2) || AvatarRect.IntersectsWith(rWall3))
             {
 
@@ -119,27 +120,27 @@ namespace TestJoint
 
             }
 
-            if (PerTop < PlatTop && PerTop > PlatTop - Avatar.ActualHeight && PerLeft < PlatLeft + (int)leftPlatform.Width && PerLeft >= PlatLeft)
+            if (PerTop < PlatTop && PerTop > PlatTop - Avatar.ActualHeight && PerLeft < PlatLeft + (int)leftPlatform.ActualWidth && PerLeft >= PlatLeft)
             {
                 CharPos += DistanciaX;
                 CharPosY = PlatTop - (int)Avatar.ActualHeight;
                 Canvas.SetLeft(Avatar, CharPos);
                 Canvas.SetTop(Avatar, CharPosY);
             }
-            else if (PerTop < PlatTop2 && PerTop > PlatTop2 - Avatar.ActualHeight && PerLeft < PlatLeft2 + (int)rightPlatform.Width && PerLeft >= PlatLeft2)
+            else if (PerTop < PlatTop2 && PerTop > PlatTop2 - Avatar.ActualHeight && PerLeft < PlatLeft2 + (int)rightPlatform.ActualWidth && PerLeft >= PlatLeft2)
             {
                 CharPos += DistanciaX;
                 CharPosY = PlatTop2 - (int)Avatar.ActualHeight;
                 Canvas.SetLeft(Avatar, CharPos);
                 Canvas.SetTop(Avatar, CharPosY);
             }
-            else if (PerTop < ground1 && PerTop > ground1 - Avatar.ActualHeight && PerLeft < leftGround1 + (int)Floor1.Width && PerLeft >= leftGround1)
+            else if (PerTop < ground1 && PerTop > ground1 - Avatar.ActualHeight && PerLeft < leftGround1 + (int)Floor1.ActualWidth && PerLeft >= leftGround1)
             {
                 CharPos += DistanciaX;
                 Canvas.SetLeft(Avatar, CharPos);
                 Canvas.SetTop(Avatar, CharPosY);
             }
-            else if (PerTop < door && PerTop > door - Avatar.ActualHeight && PerLeft < leftDoor + (int)Door.Width && PerLeft >= leftDoor)
+            else if (PerTop < door && PerTop > door - Avatar.ActualHeight && PerLeft < leftDoor + (int)Door.ActualWidth && PerLeft >= leftDoor)
             {
                 CharPos += DistanciaX;
                 Canvas.SetLeft(Avatar, CharPos);
@@ -184,7 +185,9 @@ namespace TestJoint
             }
             if (CharPos >= 560 || CharPos == -1)
             {
+                CharPos = 25;
                 distanceChanged = true;
+                Console.WriteLine("Si entra");
                 DistanciaX *= -1;
             }
         }
