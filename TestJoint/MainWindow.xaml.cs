@@ -35,11 +35,15 @@ namespace TestJoint
         int CharPos = 100;
         int CharPosY = 0;
         int DistanciaX = 1;
+        int Llaves = 0;
         SoundPlayer backgroundM;
         bool distanceChanged = false;
         bool spinyOrb;
-        Random rnd = new Random();
-        
+        System.Windows.Controls.Image[] keys = new System.Windows.Controls.Image[3];
+        System.Windows.Controls.Image[] barreras = new System.Windows.Controls.Image[3];
+        static Random random = new Random();
+
+
 
         public MainWindow()
         {
@@ -53,6 +57,7 @@ namespace TestJoint
             _sensor = KinectSensor.KinectSensors.Where(s => s.Status == KinectStatus.Connected).FirstOrDefault();
             backgroundM = new SoundPlayer(Properties.Resources.Megaman_Rockman_X_Intro_Highway_Stage);
             backgroundM.PlayLooping();
+
             if (_sensor != null)
             {
                 _sensor.ColorStream.Enable();
@@ -63,12 +68,28 @@ namespace TestJoint
 
                 _sensor.Start();
             }
+            keys[0] = key1; keys[1] = key2; keys[2] = key3;
+            foreach (var key in keys)
+            {
+
+                Canvas.SetTop(key, random.Next(50, 350));
+                Canvas.SetLeft(key, random.Next(100, 500));
+            }
+
+            barreras[0] = Wall1; barreras[1] = Wall2; barreras[2] = Wall3;
+            foreach (var barrera in barreras)
+            {
+
+                Canvas.SetTop(barrera, random.Next(50, 350));
+                Canvas.SetLeft(barrera, random.Next(100, 500));
+            }
 
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0, 0, 0, 0, 5);
             timer.IsEnabled = true;
             timer.Start();
             timer.Tick += new EventHandler(timer_Tick);
+
         }
         void timer_Tick(object sender, EventArgs e)
         {
@@ -79,10 +100,10 @@ namespace TestJoint
             leftRun.EndInit();
             var Run = new BitmapImage();
             Run.BeginInit();
-            Run.UriSource = new Uri(@"Images\megaman running.gif",UriKind.Relative);
+            Run.UriSource = new Uri(@"Images\megaman running.gif", UriKind.Relative);
             Run.EndInit();
             CharPos = int.Parse(Avatar.GetValue(Canvas.LeftProperty).ToString());
-            
+
 
             //if(Personaje.po) valores de interaccion
             int PerTop = int.Parse(Avatar.GetValue(Canvas.TopProperty).ToString());
@@ -103,21 +124,58 @@ namespace TestJoint
             int leftWall2 = int.Parse(Wall2.GetValue(Canvas.LeftProperty).ToString());
             int leftWall3 = int.Parse(Wall3.GetValue(Canvas.LeftProperty).ToString());
 
-            System.Drawing.Rectangle AvatarRect = new System.Drawing.Rectangle(PerLeft,PerTop, (int)Avatar.Width , (int)Avatar.Height);
+            int Key1 = int.Parse(key1.GetValue(Canvas.TopProperty).ToString());
+            int Key2 = int.Parse(key2.GetValue(Canvas.TopProperty).ToString());
+            int Key3 = int.Parse(key3.GetValue(Canvas.TopProperty).ToString());
+            int leftKey1 = int.Parse(key1.GetValue(Canvas.LeftProperty).ToString());
+            int leftKey2 = int.Parse(key2.GetValue(Canvas.LeftProperty).ToString());
+            int leftKey3 = int.Parse(key3.GetValue(Canvas.LeftProperty).ToString());
+
+            System.Drawing.Rectangle AvatarRect = new System.Drawing.Rectangle(PerLeft, PerTop, (int)Avatar.Width, (int)Avatar.Height);
             System.Drawing.Rectangle rWall1 = new System.Drawing.Rectangle(leftWall1, wall1, (int)Wall1.Width, (int)Wall1.ActualHeight);
             System.Drawing.Rectangle rWall2 = new System.Drawing.Rectangle(leftWall2, wall2, (int)Wall2.Width, (int)Wall2.ActualHeight);
             System.Drawing.Rectangle rWall3 = new System.Drawing.Rectangle(leftWall3, wall3, (int)Wall3.Width, (int)Wall3.ActualHeight);
-            xPosition.Content = "avatar x= " + PerLeft + "Area= \n" + AvatarRect;
-            yPosition.Content = "wall1 x= " + rWall1 + "Area= \n" + Wall1.ActualHeight + "intersects?\n";
-            Console.WriteLine(distanceChanged + " " + DistanciaX + "monito: "+ Avatar.GetValue(Canvas.LeftProperty));
+
+            System.Drawing.Rectangle rKey1 = new System.Drawing.Rectangle(leftKey1, Key1, (int)key1.Width, (int)key1.ActualHeight);
+            System.Drawing.Rectangle rKey2 = new System.Drawing.Rectangle(leftKey2, Key2, (int)key2.Width, (int)key2.ActualHeight);
+            System.Drawing.Rectangle rKey3 = new System.Drawing.Rectangle(leftKey3, Key3, (int)key3.Width, (int)key3.ActualHeight);
+
+
+            //xPosition.Content = "avatar x= " + PerLeft + "Area= \n" + AvatarRect;
+            //yPosition.Content = "wall1 x= " + rWall1 + "Area= \n" + Wall1.ActualHeight + "intersects?\n";
+            //Console.WriteLine(distanceChanged + " " + DistanciaX + "monito: "+ Avatar.GetValue(Canvas.LeftProperty));
             if (AvatarRect.IntersectsWith(rWall1) || AvatarRect.IntersectsWith(rWall2) || AvatarRect.IntersectsWith(rWall3))
             {
 
                 distanceChanged = true;
                 DistanciaX *= -1;
-                Canvas.SetLeft(Avatar, CharPos -20);
-                Canvas.SetTop(Avatar, CharPosY);
+                Canvas.SetLeft(Avatar, CharPos - 20);
+                //Canvas.SetTop(Avatar, 1000);
 
+
+            }
+
+            if (AvatarRect.IntersectsWith(rKey1))
+            {
+                Canvas.SetLeft(key1, 1000);
+                Canvas.SetTop(key1, 1000);
+                Llaves++;
+                yPosition.Content = Llaves;
+            }
+            else if (AvatarRect.IntersectsWith(rKey2))
+            {
+                Canvas.SetLeft(key2, 1000);
+                Canvas.SetTop(key2, 1000);
+                Llaves++;
+                yPosition.Content = Llaves;
+
+            }
+            else if (AvatarRect.IntersectsWith(rKey3))
+            {
+                Canvas.SetLeft(key3, 1000);
+                Canvas.SetTop(key3, 1000);
+                Llaves++;
+                yPosition.Content = Llaves;
             }
 
             if (PerTop < PlatTop && PerTop > PlatTop - Avatar.ActualHeight && PerLeft < PlatLeft + (int)leftPlatform.ActualWidth && PerLeft >= PlatLeft)
@@ -142,6 +200,8 @@ namespace TestJoint
             }
             else if (PerTop < door && PerTop > door - Avatar.ActualHeight && PerLeft < leftDoor + (int)Door.ActualWidth && PerLeft >= leftDoor)
             {
+                if (Llaves == 3) xPosition.Content = "GANASTE";
+                timer.Stop();
                 CharPos += DistanciaX;
                 Canvas.SetLeft(Avatar, CharPos);
                 Canvas.SetTop(Avatar, CharPosY);
@@ -155,14 +215,23 @@ namespace TestJoint
 
             if (CharPosY > 400)
             {
-               int month = rnd.Next(1, 13);
+
                 CharPos = 30;
                 CharPosY = -55;
                 DistanciaX = 1;
-                xPosition.Content = "Random: " + month;
+
                 distanceChanged = true;
                 Canvas.SetLeft(Avatar, CharPos);
                 Canvas.SetTop(Avatar, CharPosY);
+                //Re dibujar llaves
+                Llaves = 0;
+                foreach (var key in keys)
+                {
+
+                    Canvas.SetTop(key, random.Next(50, 350));
+                    Canvas.SetLeft(key, random.Next(100, 500));
+                }
+
             }
             if (distanceChanged)
             {
@@ -187,9 +256,10 @@ namespace TestJoint
             {
                 CharPos = 25;
                 distanceChanged = true;
-                Console.WriteLine("Si entra");
+                //Console.WriteLine("Si entra");
                 DistanciaX *= -1;
             }
+
         }
         void Sensor_AllFramesReady(object sender, AllFramesReadyEventArgs e)
         {
@@ -253,8 +323,8 @@ namespace TestJoint
                                     Canvas.SetLeft(leftPlatform, point2.X - 30);
                                     Canvas.SetTop(leftPlatform, point2.Y - 30);
                                     // canvas.Children.Add(Shiryu);
-                                   // yPosition.Content = "y: " + point2.Y;
-                                   // xPosition.Content = "x: " + point2.X;
+                                    // yPosition.Content = "y: " + point2.Y;
+                                    // xPosition.Content = "x: " + point2.X;
 
                                 }
 

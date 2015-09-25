@@ -16,13 +16,12 @@
             <Label x:Name="xPosition" Content="Label x:" Width="417" Height="275" FontSize="26.667" Canvas.Top="2" Canvas.Left="13"></Label>
             <Label x:Name="yPosition" Content="Label y:" Width="571" Height="173" FontSize="26.667" Canvas.Top="190"/>
             <Image x:Name="Door" Source="Images/DoorPlatform.png" Width="140" Canvas.Top="383" Canvas.Left="489" />
-            <Image x:Name="key" Source="Images/headObject.png" Width="40" Canvas.Top="338" Canvas.Left="531" RenderTransformOrigin="0.479,-0.706" />
             <Image x:Name="key1" Source="Images/headObject.png" Width="40" Canvas.Top="338" Canvas.Left="471" RenderTransformOrigin="0.479,-0.706" />
             <Image x:Name="key2" Source="Images/headObject.png" Width="40" Canvas.Top="338" Canvas.Left="531" RenderTransformOrigin="0.479,-0.706" />
             <Image x:Name="key3" Source="Images/headObject.png" Width="40" Canvas.Top="338" Canvas.Left="589" RenderTransformOrigin="0.479,-0.706" />
             <Image x:Name="Floor1" Source="Images/snowFloor.png" Width="239" Canvas.Top="368" Canvas.Left="-1" />
             <Image x:Name="Avatar" gif:ImageBehavior.AnimatedSource="Images\megaman running.gif"  Width="64" Canvas.Top="105" Canvas.Left="13" Height="64" />
-            <Image x:Name="Wall1" Source="Images/obstacle.png" Width="10" Canvas.Top="129" Canvas.Left="107" RenderTransformOrigin="-0.114,0.571" Height="50" Stretch="Fill"  />
+            <Image x:Name="Wall1" Source="Images/obstacle.png" Width="20" Canvas.Top="129" Canvas.Left="107" RenderTransformOrigin="-0.114,0.571" Height="56"  />
             <Image x:Name="Wall2" Source="Images/obstacle.png" Width="20" Canvas.Top="322" Canvas.Left="506"  />
             <Image x:Name="Wall3" Source="Images/obstacle.png" Width="20" Canvas.Top="322" Canvas.Left="357"  />
         </Canvas>
