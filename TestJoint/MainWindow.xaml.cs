@@ -55,6 +55,7 @@ namespace TestJoint
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _sensor = KinectSensor.KinectSensors.Where(s => s.Status == KinectStatus.Connected).FirstOrDefault();
+            //poner musica de fondo.
             backgroundM = new SoundPlayer(Properties.Resources.Megaman_Rockman_X_Intro_Highway_Stage);
             backgroundM.PlayLooping();
 
@@ -88,11 +89,13 @@ namespace TestJoint
             timer.Interval = new TimeSpan(0, 0, 0, 0, 5);
             timer.IsEnabled = true;
             timer.Start();
+            //lammar la funcion timer.
             timer.Tick += new EventHandler(timer_Tick);
 
         }
         void timer_Tick(object sender, EventArgs e)
         {
+            //wpfanimatedGIF para obtener gif correctos de imagenes (paquete descargado en linea.)
             var controller = WpfAnimatedGif.ImageBehavior.GetAnimationController(Avatar);
             var leftRun = new BitmapImage();
             leftRun.BeginInit();
@@ -107,13 +110,16 @@ namespace TestJoint
 
             //if(Personaje.po) valores de interaccion
             int PerTop = int.Parse(Avatar.GetValue(Canvas.TopProperty).ToString());
-            int PlatTop = int.Parse(leftPlatform.GetValue(Canvas.TopProperty).ToString());
             int PerLeft = int.Parse(Avatar.GetValue(Canvas.LeftProperty).ToString());
+            // valor de plataformas
+            int PlatTop = int.Parse(leftPlatform.GetValue(Canvas.TopProperty).ToString());
             int PlatLeft = int.Parse(leftPlatform.GetValue(Canvas.LeftProperty).ToString());
             int PlatTop2 = int.Parse(rightPlatform.GetValue(Canvas.TopProperty).ToString());
             int PlatLeft2 = int.Parse(rightPlatform.GetValue(Canvas.LeftProperty).ToString());
+            //valor de piso
             int ground1 = int.Parse(Floor1.GetValue(Canvas.TopProperty).ToString());
             int leftGround1 = int.Parse(Floor1.GetValue(Canvas.LeftProperty).ToString());
+            //valor de plataforma de victoria.
             int door = int.Parse(Door.GetValue(Canvas.TopProperty).ToString());
             int leftDoor = int.Parse(Door.GetValue(Canvas.LeftProperty).ToString());
             // valor se de Paredes
@@ -123,19 +129,20 @@ namespace TestJoint
             int leftWall1 = int.Parse(Wall1.GetValue(Canvas.LeftProperty).ToString());
             int leftWall2 = int.Parse(Wall2.GetValue(Canvas.LeftProperty).ToString());
             int leftWall3 = int.Parse(Wall3.GetValue(Canvas.LeftProperty).ToString());
-
+            //valores de las llaves.
             int Key1 = int.Parse(key1.GetValue(Canvas.TopProperty).ToString());
             int Key2 = int.Parse(key2.GetValue(Canvas.TopProperty).ToString());
             int Key3 = int.Parse(key3.GetValue(Canvas.TopProperty).ToString());
             int leftKey1 = int.Parse(key1.GetValue(Canvas.LeftProperty).ToString());
             int leftKey2 = int.Parse(key2.GetValue(Canvas.LeftProperty).ToString());
             int leftKey3 = int.Parse(key3.GetValue(Canvas.LeftProperty).ToString());
-
+            //renctangulo de personaje
             System.Drawing.Rectangle AvatarRect = new System.Drawing.Rectangle(PerLeft, PerTop, (int)Avatar.Width, (int)Avatar.Height);
+            // rectangulo de obstaculos o paredes
             System.Drawing.Rectangle rWall1 = new System.Drawing.Rectangle(leftWall1, wall1, (int)Wall1.Width, (int)Wall1.ActualHeight);
             System.Drawing.Rectangle rWall2 = new System.Drawing.Rectangle(leftWall2, wall2, (int)Wall2.Width, (int)Wall2.ActualHeight);
             System.Drawing.Rectangle rWall3 = new System.Drawing.Rectangle(leftWall3, wall3, (int)Wall3.Width, (int)Wall3.ActualHeight);
-
+            //rectangulos de llave
             System.Drawing.Rectangle rKey1 = new System.Drawing.Rectangle(leftKey1, Key1, (int)key1.Width, (int)key1.ActualHeight);
             System.Drawing.Rectangle rKey2 = new System.Drawing.Rectangle(leftKey2, Key2, (int)key2.Width, (int)key2.ActualHeight);
             System.Drawing.Rectangle rKey3 = new System.Drawing.Rectangle(leftKey3, Key3, (int)key3.Width, (int)key3.ActualHeight);
@@ -150,11 +157,11 @@ namespace TestJoint
                 distanceChanged = true;
                 DistanciaX *= -1;
                 Canvas.SetLeft(Avatar, CharPos - 20);
-                //Canvas.SetTop(Avatar, 1000);
+                
 
 
             }
-
+            //funciones para detectar collision con llaves.
             if (AvatarRect.IntersectsWith(rKey1))
             {
                 Canvas.SetLeft(key1, 1000);
@@ -177,7 +184,7 @@ namespace TestJoint
                 Llaves++;
                 yPosition.Content = Llaves;
             }
-
+            //funcion para caminar encima de las manos(derecha)
             if (PerTop < PlatTop && PerTop > PlatTop - Avatar.ActualHeight && PerLeft < PlatLeft + (int)leftPlatform.ActualWidth && PerLeft >= PlatLeft)
             {
                 CharPos += DistanciaX;
@@ -185,6 +192,7 @@ namespace TestJoint
                 Canvas.SetLeft(Avatar, CharPos);
                 Canvas.SetTop(Avatar, CharPosY);
             }
+            // funcion para caminar encima de las manos(izquierda)
             else if (PerTop < PlatTop2 && PerTop > PlatTop2 - Avatar.ActualHeight && PerLeft < PlatLeft2 + (int)rightPlatform.ActualWidth && PerLeft >= PlatLeft2)
             {
                 CharPos += DistanciaX;
@@ -192,14 +200,17 @@ namespace TestJoint
                 Canvas.SetLeft(Avatar, CharPos);
                 Canvas.SetTop(Avatar, CharPosY);
             }
+            // funcion para caminar encima del suelo
             else if (PerTop < ground1 && PerTop > ground1 - Avatar.ActualHeight && PerLeft < leftGround1 + (int)Floor1.ActualWidth && PerLeft >= leftGround1)
             {
                 CharPos += DistanciaX;
                 Canvas.SetLeft(Avatar, CharPos);
                 Canvas.SetTop(Avatar, CharPosY);
             }
+            // que hacer si collisiona con la plataforma de victoria
             else if (PerTop < door && PerTop > door - Avatar.ActualHeight && PerLeft < leftDoor + (int)Door.ActualWidth && PerLeft >= leftDoor)
             {
+                // si se tiene todas las llaves desplegar texto GANASTE
                 if (Llaves == 3) xPosition.Content = "GANASTE";
                 timer.Stop();
                 CharPos += DistanciaX;
@@ -212,7 +223,7 @@ namespace TestJoint
                 Canvas.SetTop(Avatar, CharPosY);
             }
 
-
+            // si el personaje se cae debera de reiniciar los valores del juego.
             if (CharPosY > 400)
             {
 
@@ -233,9 +244,11 @@ namespace TestJoint
                 }
 
             }
+            // si choca con un objeto cambia su vector de velocidad al lado opuesto
             if (distanceChanged)
             {
                 distanceChanged = false;
+                // cambiar la imagen del personaje corriendo de izquierda a derecha o viceversa
                 if (DistanciaX == 1)
                 {
                     WpfAnimatedGif.ImageBehavior.SetAnimatedSource(Avatar, Run);
@@ -252,6 +265,7 @@ namespace TestJoint
                     WpfAnimatedGif.ImageBehavior.SetAutoStart(Avatar, true);
                 }
             }
+            // si choca con los extremos de la ventana cambia de direccion.
             if (CharPos >= 560 || CharPos == -1)
             {
                 CharPos = 25;
